@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'thor'
+require 'strang'
 require 'pp'
 
 class Fixnum
@@ -15,8 +16,8 @@ class TextAnalyzer
   end
   
   def analyze
-    # Unicode U+ZZZZ codepoints to their characters
-    @text.gsub! /U\+(\w+)/ do |m|
+    # Unicode U+ZZZZ, \uZZZZ codepoints to their characters
+    @text.gsub! /(?: U\+ | \\u ) (\w+)/x do |m|
       $1.to_i(16).chr_u
     end
     @text
