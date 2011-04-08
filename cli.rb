@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
+
 require 'rubygems'
 require 'thor'
-require 'strang'
 require 'pp'
+
+$: << File.expand_path(File.dirname(__FILE__) + "/lib")
+require 'strang'
 
 class CLI < Thor
   desc 'analyze File', "Analyzes File and spits it back out on STDOUT"
