@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { font-family: Helvetica; }
+      textarea { font-size: 1.5em; width: 100%; height: 350px }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Strang</title>
+    
+  </head>
+  <body>
+    <p>
+      <textarea id="input"></textarea>
+    </p>
+
+    <p>
+      <textarea id="output"></textarea>
+    </p>
+    
+    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(function(){
+        var server = 'http://localhost:4567/';
+        
+        $('#input').keyup(function(){
+          var text = $(this).val();
+          $.ajax({
+            url: server + 'analyze',
+            data: {text: text},
+            dataType: 'json',
+            type: 'POST',
+            success: function(data){
+              $('#output').val(data['text']);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

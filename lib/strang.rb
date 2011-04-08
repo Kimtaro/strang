@@ -1,7 +1,10 @@
 # Encoding: UTF-8
-#!/usr/bin/env ruby
+
+# TODO: Use https://github.com/speedmax/rchardet ?
+
 require 'rubygems'
 require 'pp'
+require 'strang/server'
 
 class Fixnum
   def chr_u
