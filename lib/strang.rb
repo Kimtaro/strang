@@ -4,6 +4,7 @@
 
 require 'rubygems'
 require 'pp'
+require 'cgi'
 require 'strang/server'
 
 class Fixnum
@@ -22,6 +23,10 @@ class Strang
     @text.gsub! /(?: U\+ | \\u ) (\w+)/x do |m|
       $1.to_i(16).chr_u
     end
+    
+    # URL decode
+    @text = CGI::unescape(@text)
+    
     @text
   end  
 end
